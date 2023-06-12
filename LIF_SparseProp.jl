@@ -1,7 +1,7 @@
 using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot
 
 function lifnet(n, nstep, k, j0, ratewnt, τ, seedic, seednet)
-    iext = τ * sqrt(k) * j0 * ratewnt / 1000 # iext given by balance equation
+    iext = τ * sqrt(k) * j0 * ratewnt # iext given by balance equation
     ω, c = 1 / log(1.0 + 1 / iext), j0 / sqrt(k) / (1.0 + iext) # phase velocity LIF
     ϕth, ϕshift = 1.0, 0.0# threshold for LIF
     r = Xoroshiro128Plus(seedic) # init. random number generator
