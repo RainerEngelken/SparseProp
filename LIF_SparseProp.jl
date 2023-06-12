@@ -40,11 +40,11 @@ end
 #n: # of neurons, k: synapses/neuron, j0: syn. strength, τ: membr. time const.
 n, nstep, k, j0, ratewnt, τ, seedic, seednet = 10^5, 10^5, 100, 1, 1.0, 0.01, 1, 1
 # quick run to compile code
-@time lifnet(100, 1, 10, j0, ratewnt, τ, seedic, seednet);
+@time lifnet(100, 1, 10, j0, ratewnt, τ, seedic, seednet)
 
 # run & benchmark network with specified parameters
-GC.gc();
-@time rate, sidx, stimes = lifnet(n, nstep, k, j0, ratewnt, τ, seedic, seednet);
+GC.gc()
+@time rate, sidx, stimes = lifnet(n, nstep, k, j0, ratewnt, τ, seedic, seednet)
 
 # plot spike raster
 plot(stimes, sidx, ",k", ms = 0.1)
