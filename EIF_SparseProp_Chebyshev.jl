@@ -1,5 +1,4 @@
-using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot
-using DifferentialEquations,PyPlot, DataInterpolations,Roots,Random,BenchmarkTools,ApproxFun
+using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot, DifferentialEquations,PyPlot, DataInterpolations,Roots,Random,BenchmarkTools,ApproxFun
 
 function eifnet(n, nstep, k, j0, ratewnt, τ, seedic, seednet,ΔV)
 checkCorrectnessAndBenchmark = true
@@ -48,6 +47,10 @@ PTC_EIF(phi,j)= 1-ωNumerical*EIFInversetable(EIFtable((1-phi)/ωNumerical)+j)
 
 @show phiMin = 1-ωNumerical*solEIF.t[end]
 
+##############################################
+# add EIF Chebyshev polynomial approximation #
+##############################################
+
 S = Chebyshev(phiMin..1.0)
 p = points(S,20)
 println("evalutating data points of v = PTC_EIF.(p,-j0/sqrt(k))")
@@ -74,11 +77,11 @@ phitest = 0.99
 @show PTC_Chebyshev(phitest)
 @show PTC_EIF(phitest,-j0/sqrt(k))
 
-# for benchmarking:
+# benchmarking of PTC lookup vs PTC lif and PTC Chebyshev:
 println("PTC_lookup")
 @btime $PTC_EIF($0.1,$0.1)
-println("PTC_LIF")
 PTClif(phi,c) = -ωNumerical * log(exp(-(phi) / ωNumerical) + c)
+println("PTC_LIF")
 @btime $PTClif($0.1,$0.1)
 println("PTC_Chebyshev")
 @btime $PTC_Chebyshev($0.1)
