@@ -1,4 +1,5 @@
-using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot, DifferentialEquations,PyPlot, DataInterpolations,Roots,Random,BenchmarkTools,ApproxFun
+using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot
+using DifferentialEquations,PyPlot, DataInterpolations,Roots,Random,BenchmarkTools,ApproxFun
 
 function eifnet(n, nstep, k, j0, ratewnt, τ, seedic, seednet,ΔV)
 checkCorrectnessAndBenchmark = true
@@ -29,8 +30,9 @@ function affectEIF!(integrator)
     end
 end
 cbEIF = ContinuousCallback(condition,affectEIF!)
-tol = 1e-20
-@time solEIF = solve(prob,Tsit5(),callback=cbEIF,reltol=tol,abstol=tol,maxiters=10^6)#maxiters=10^7
+tol=eps(1.0)
+
+@time solEIF = solve(prob,Vern9(),callback=cbEIF,reltol=tol,abstol=tol,maxiters=10^6)#maxiters=10^7
 @show solEIF.u[end]
 figure();plot(solEIF.t,solEIF.u);xlabel("t");ylabel("voltage");title("solution V(t) to EIF");grid("on")
 sol2(x) = solEIF(x) .+ 1.0
