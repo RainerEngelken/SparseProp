@@ -1,5 +1,4 @@
-using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot
-using DifferentialEquations,PyPlot, DataInterpolations,Roots,Random,BenchmarkTools,ApproxFun
+using DataStructures, RandomNumbers.Xorshifts, StatsBase, PyPlot, DifferentialEquations,PyPlot, DataInterpolations,Roots,Random,BenchmarkTools,ApproxFun
 
 function eifnet(n, nstep, k, j0, ratewnt, τ, seedic, seednet,ΔV)
 checkCorrectnessAndBenchmark = true
