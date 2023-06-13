@@ -41,10 +41,6 @@ tMinus1 = fzero(sol2,-1.0)
 EIFtable = QuadraticInterpolation(1.0 .+unique(vcat(reverse(solEIF.u)...)),unique(reverse(-(solEIF.t .-solEIF.t[end])))) #even better because double entries are being removed, they create Infs/NaNs
 EIFInversetable = QuadraticInterpolation(unique(solEIF.t[end].-solEIF.t),1.0 .+ unique(vcat(solEIF.u...))) #even better because double 
 
-#################
-# end EIF stuff #
-#################
-
 
 function PTC_EIF(phi,j)
 tn = (1-phi)/ωNumerical
@@ -57,7 +53,9 @@ function ptcLookup!(ϕ, postid, ϕshift, j) # phase transition curve of EIF
     end
 end
 
-
+#############
+# main loop #
+#############
     for s = 1:nstep # main loop
         ϕmax, j = top_with_handle(ϕ)# get phase of next spiking neuron
         dϕ = ϕth - ϕmax - ϕshift# calculate next spike time
