@@ -12,14 +12,14 @@ In this work we propose a novel event-based algorithm to simulate and train spik
 
 #### Dependencies
 - Julia (>= 1.5, tested on 1.9.1)
-- DataStructures, RandomNumbers, PyPlot
+- DataStructures, RandomNumbers, PyPlot, ApproxFun, DataInterpolations, DifferentialEquations
 ## Getting started
 To install the required packages, run the following in the julia REPL after installing Julia:
 
 ```
 using Pkg
 
-for pkg in ["RandomNumbers", "PyPlot", "DataStructures"]
+for pkg in ["RandomNumbers", "PyPlot", "DataStructures", "ApproxFun", "DataInterpolations", "DifferentialEquations"]
     Pkg.add(pkg)
 end
 ```
@@ -40,11 +40,11 @@ k: synapses per neuron\
 j0: synaptic. strength\
 τ: membrane. time constant\
 seedic: seed of random number generator for initial condition.\
-seednet: seed of random number generator for network realization.\
+seednet: seed of random number generator for network realization.
 
 ### QIF_SparseProp
 Contains example implementation of a QIF network with \textit{SparseProp}.\
-The function qifnet has the same input parameters as s lifnet above.
+The function qifnet has the same input parameters as lifnet above.
 
 ### QIF_SparseProp_timebased.jl
 Contains example implementation of a QIF network with \textit{SparseProp}.\
@@ -56,13 +56,11 @@ Contains example implementation of a QIF network with \textit{SparseProp}.\
 Here, instead of the phase representation, we use the time-based heap and every neuron receives a different input current.
 
 ### EIF_SparseProp.jl
-
 Contains example implementation of an EIF network with \textit{SparseProp}.\
 The next spike time is found using a precalculated lookup table. To create the lookup table, we solve the ordinary differential equation of the exponential integrate-and-fire model with high precision using the DifferentialEquations.jl package. This solution is then transformed into a lookup table using DataInterpolations.jl, based on which the phase transition is calculated with high precision.
 
-
 ### EIF_SparseProp_Chebyshev.jl
-Same as EIF_SparseProp.jl, but the phase transition curve is approximated by Chebyshev polynomials. This requires the packages ApproxFun.jl, DataInterpolations.jl and DifferentialEquations.jl.
+Same as EIF_SparseProp.jl, but the phase transition curve is approximated by Chebyshev polynomials. This requires the packages ApproxFun.jl, DataInterpolations.jl, and DifferentialEquations.jl.
 <!---
 ### Training dynamics of eigenvalues:
 Here is a visualization of the recurrent weight matrix and the eigenvalues throughout across training epochs.
