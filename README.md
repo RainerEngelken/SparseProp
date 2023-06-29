@@ -51,13 +51,18 @@ Contains example implementation of a QIF network with \textit{SparseProp}.\
 Here, instead of the phase representation, we use the time-based heap.
 
 
-### example_code/
-Example scripts for training networks on one, two and three stimuli.\
-runOneStimulus.jl trains an RNN on tracking one OU-signal showing that the network becomes more tightly balanced over training epochs.\
-runTwoStimuli.jl trains an RNN on two OU-signal stimulus showing that the network becomes more tightly balanced over training epochs and breaks up into two weakly-connected subnetworks.\
-runTheeStimuli.jl trains an RNN on two OU-signal stimulus showing that the network becomes more tightly balanced over training epochs and breaks up into three weakly-connected subnetworks.\
-![Training RNN on two signals leads to balanced subpopulations](/figures/S=2.svg?raw=true "balanced subnetworks emerge  after runTheeStimuli.jl")
+### QIF_SparseProp_inhomogeneous.jl
+Contains example implementation of a QIF network with \textit{SparseProp}.\
+Here, instead of the phase representation, we use the time-based heap and every neuron receives a different input current.
 
+### EIF_SparseProp.jl
+
+Contains example implementation of an EIF network with \textit{SparseProp}.\
+The next spike time is found using a precalculated lookup table. To create the lookup table, we solve the ordinary differential equation of the exponential integrate-and-fire model with high precision using the DifferentialEquations.jl package. This solution is then transformed into a lookup table using DataInterpolations.jl, based on which the phase transition is calculated with high precision.
+
+
+### EIF_SparseProp_Chebyshev.jl
+Same as EIF_SparseProp.jl, but the phase transition curve is approximated by Chebyshev polynomials. This requires the packages ApproxFun.jl, DataInterpolations.jl and DifferentialEquations.jl.
 <!---
 ### Training dynamics of eigenvalues:
 Here is a visualization of the recurrent weight matrix and the eigenvalues throughout across training epochs.
@@ -68,7 +73,7 @@ Here is a visualization of the recurrent weight matrix and the eigenvalues throu
 ### Implementation details
 A full specification of packages used and their versions can be found in _packages.txt_ .\
 For all calculations, a 'burn-in' period was discarded to let the network state converge to a stationary state.\
-All simulations were run on a single CPU and took on the order of minutes to a few of hours.
+All simulations were run on a single CPU and took on the order of minutes to a few hours.
 
 
 
