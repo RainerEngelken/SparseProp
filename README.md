@@ -3,7 +3,7 @@
 This repository contains the implementation code for manuscript: <br>
 __SparseProp: Efficient Event-Based Simulation and Training of Sparse Recurrent Spiking Neural Networks__ <br>
 ## Overview
-In this work we propose a novel event-based algorithm to simulate and train spiking neural networks, reducing computational cost from N to log(N) per network spike for sparse spiking networks. We provide  example implementations for recurrent networks of leaky integrate-and-fire neurons and quadratic integrate-and-fire neurons and extend the algorithm to neuron models that lack an analytical solution for the next spike time using Chebyshev polynomials.
+In this work we propose the novel event-based algorithm *SparseProp* to simulate and train spiking neural networks, reducing computational cost from N to log(N) per network spike for sparse spiking networks. We provide  example implementations for recurrent networks of leaky integrate-and-fire neurons and quadratic integrate-and-fire neurons and extend the algorithm to neuron models that lack an analytical solution for the next spike time using Chebyshev polynomials.
 
 ## Installation
 
@@ -14,7 +14,7 @@ In this work we propose a novel event-based algorithm to simulate and train spik
 - Julia (>= 1.5, tested on 1.9.1)
 - DataStructures, RandomNumbers, PyPlot, ApproxFun, DataInterpolations, DifferentialEquations
 ## Getting started
-To install the required packages, run the following in the julia REPL after installing Julia:
+To install the required packages, run the following in the Julia REPL after installing Julia:
 
 ```
 using Pkg
@@ -35,7 +35,7 @@ end
 ### LIF_SparseProp
 Contains example implementation of a LIF network with \textit{SparseProp}.\
 The function lifnet has input parameters \
-#n: # of neurons\
+n: # of neurons\
 k: synapses per neuron\
 j0: synaptic. strength\
 τ: membrane time constant\
@@ -43,20 +43,20 @@ seedic: seed of random number generator for initial condition.\
 seednet: seed of random number generator for network realization.
 
 ### QIF_SparseProp
-Contains example implementation of a QIF network with \textit{SparseProp}.\
+Contains example implementation of a QIF network with _SparseProp_.\
 The function qifnet has the same input parameters as lifnet above.
 
 ### QIF_SparseProp_timebased.jl
-Contains example implementation of a QIF network with \textit{SparseProp}.\
+Contains example implementation of a QIF network with _SparseProp_.\
 Here, instead of the phase representation, we use the time-based heap.
 
 
 ### QIF_SparseProp_inhomogeneous.jl
-Contains example implementation of a QIF network with \textit{SparseProp}.\
+Contains example implementation of a QIF network with _SparseProp_.\
 Here, instead of the phase representation, we use the time-based heap and every neuron receives a different input current.
 
 ### EIF_SparseProp.jl
-Contains example implementation of an EIF network with \textit{SparseProp}.\
+Contains example implementation of an EIF network with _SparseProp_.\
 The next spike time is found using a precalculated lookup table. To create the lookup table, we solve the ordinary differential equation of the exponential integrate-and-fire model with high precision using the DifferentialEquations.jl package. This solution is then transformed into a lookup table using DataInterpolations.jl, based on which the phase transition is calculated with high precision.
 
 ### EIF_SparseProp_Chebyshev.jl
