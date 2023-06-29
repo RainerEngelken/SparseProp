@@ -1,0 +1,5 @@
+julia => v"1.9.1"
+
+[864edb3b] DataStructures v0.18.14                                   
+[d330b81b] PyPlot v2.11.1
+[e6cf234a] RandomNumbers v1.5.3
