@@ -38,7 +38,7 @@ The function lifnet has input parameters \
 #n: # of neurons\
 k: synapses per neuron\
 j0: synaptic. strength\
-τ: membrane. time constant\
+τ: membrane time constant\
 seedic: seed of random number generator for initial condition.\
 seednet: seed of random number generator for network realization.
 
