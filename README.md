@@ -3,7 +3,7 @@
 This repository contains the implementation code for manuscript: <br>
 __SparseProp: Efficient Event-Based Simulation and Training of Sparse Recurrent Spiking Neural Networks__ <br>
 ## Overview
-In this work we propose a novel event-based algorithm to simulate and train spiking neural networks, reducing computational cost from N to log(N) per network spike for sparse spiking networks. We provide  example implementations for recurrent networks of leaky integrate-and-fire neurons and quadratic integrate-and-fire neurons and extending the algorithm to neuron models that lack an analytical solution for the next spike time using Chebyshev polynomials.
+In this work we propose a novel event-based algorithm to simulate and train spiking neural networks, reducing computational cost from N to log(N) per network spike for sparse spiking networks. We provide  example implementations for recurrent networks of leaky integrate-and-fire neurons and quadratic integrate-and-fire neurons and extend the algorithm to neuron models that lack an analytical solution for the next spike time using Chebyshev polynomials.
 
 ## Installation
 
@@ -34,13 +34,13 @@ end
 
 ### LIF_SparseProp
 Contains example implementation of a LIF network with \textit{SparseProp}.\
-The function lifnet has input parameters 
-#n: # of neurons
-k: synapses per neuron
-j0: synaptic. strength
-τ: membrane. time constant
-seedic: seed of random number generator for initial condition.
-seednet: seed of random number generator for network realization.
+The function lifnet has input parameters \
+#n: # of neurons\
+k: synapses per neuron\
+j0: synaptic. strength\
+τ: membrane. time constant\
+seedic: seed of random number generator for initial condition.\
+seednet: seed of random number generator for network realization.\
 
 ### QIF_SparseProp
 Contains example implementation of a QIF network with \textit{SparseProp}.\
