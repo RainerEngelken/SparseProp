@@ -1,6 +1,6 @@
 # SparseProp: Efficient Event-Based Simulation and Training of Sparse Recurrent Spiking Neural Networks
 
-This repository contains the implementation code for manuscript: <br>
+This repository contains the implementation code for the manuscript: <br>
 __SparseProp: Efficient Event-Based Simulation and Training of Sparse Recurrent Spiking Neural Networks__ <br>
 ## Overview
 In this work we propose the novel event-based algorithm *SparseProp* to simulate and train spiking neural networks, reducing computational cost from N to log(N) per network spike for sparse spiking networks. We provide  example implementations for recurrent networks of leaky integrate-and-fire neurons and quadratic integrate-and-fire neurons and extend the algorithm to neuron models that lack an analytical solution for the next spike time using Chebyshev polynomials.
@@ -38,7 +38,7 @@ n: # of neurons\
 k: synapses per neuron\
 j0: synaptic. strength\
 τ: membrane time constant\
-seedic: seed of random number generator for initial condition.\
+seedic: seed of random number generator for the initial condition.\
 seednet: seed of random number generator for network realization.
 ![Spike raster of balanced network of 10^5 neurons](/figures/LIFspike_raster.png?raw=true "balanced LIF network of 10^5 neurons")
 
@@ -61,6 +61,12 @@ The next spike time is found using a precalculated lookup table. To create the l
 
 ### EIF_SparseProp_Chebyshev.jl
 Same as EIF_SparseProp.jl, but the phase transition curve is approximated by Chebyshev polynomials. This requires the packages ApproxFun.jl, DataInterpolations.jl, and DifferentialEquations.jl.
+
+### LIF_SparseProp_comparison_lookuptable.jl
+To confirm the exactness of our numerical approach to infer the next spike time using lookup tables and a numerical solution of the single neuron dynamics, we compare the results of the LIF network with the analytical phase transition curve with the numerically approximated phase transition curve obtained via DifferentialEquations.jl and DataInterpolations.jl. This requires the packages ApproxFun.jl, DataInterpolations.jl, and DifferentialEquations.jl.
+The following figures show that the errors in the spike times when running a network simulation of 10^5 neurons is close to machine precision. The errors are so small that no spike index has changed.
+![Error of spike times for LIF network](/figures/LIF_comparison_lookuptable_analytical.png?raw=true "comparision of analytical and numerical PRC used in SparseProp")
+
 <!---
 ### Training dynamics of eigenvalues:
 Here is a visualization of the recurrent weight matrix and the eigenvalues throughout across training epochs.
