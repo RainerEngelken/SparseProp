@@ -27,13 +27,12 @@ end
 For example, to run a spiking network of 10^5 leaky integrate-and-fire neurons
 ```
 include("LIF_SparseProp.jl")
-end
 ```
 
 ## Repository Overview
 
 ### LIF_SparseProp
-Contains example implementation of a LIF network with \textit{SparseProp}.\
+Contains example implementation of a LIF network with _SparseProp_.\
 The function lifnet has input parameters \
 n: # of neurons\
 k: synapses per neuron\
@@ -41,6 +40,7 @@ j0: synaptic. strength\
 τ: membrane time constant\
 seedic: seed of random number generator for initial condition.\
 seednet: seed of random number generator for network realization.
+![Spike raster of balanced network of 10^5 neurons](/figures/LIFspike_raster.png?raw=true "balanced LIF network of 10^5 neurons")
 
 ### QIF_SparseProp
 Contains example implementation of a QIF network with _SparseProp_.\
